@@ -10,14 +10,15 @@ resource "aws_db_instance" "drupal_rds" {
   password             = "${var.drupal_pass}"
   parameter_group_name = "default.mysql5.7"
   db_subnet_group_name = "${aws_db_subnet_group.rds_dbsubnet_group.id}"
+  skip_final_snapshot  = true
 }
 
 resource "aws_db_subnet_group" "rds_dbsubnet_group" {
   name                 = "rds_dbsubnet_group"
-  subnet_ids   	       = ["${aws_subnet.us-east-1a-private.id}"]
+  subnet_ids   	       = ["${aws_subnet.private-subnets-DB.*.id}"]
   
   tags {
-   Name = "DB Subnet Group"
+   Name = "db-subnet-group"
    Environment = "pci_dss_poc"
    }
 }

@@ -1,13 +1,14 @@
-resource "aws_vpc" "open_vpn_vpc" {
-    cidr_block = "${var.vpc_cidr}"
+resource "aws_vpc" "drupal-vpc" {
+    cidr_block = "${var.vpc["cidr_block"]}"
     enable_dns_hostnames = true
     tags {
-        Name = "terraform-openvpn-vpc"
+        Name = "terraform-drupal-vpc"
 	Environment = "pci_dss_poc"
     }
 }
 
-resource "aws_internet_gateway" "open_vpn_gateway" {
-    vpc_id = "${aws_vpc.open_vpn_vpc.id}"
+resource "aws_internet_gateway" "drupal-gateway" {
+    vpc_id = "${aws_vpc.drupal-vpc.id}"
 }
+
 

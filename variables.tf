@@ -8,29 +8,39 @@ variable "ami-ubuntu" {
     default = "ami-759bc50a"
 }
 
-variable "vpc_cidr" {
-    description = "CIDR for the whole VPC"
-    default = "10.0.0.0/16"
+variable "nat" {
+  type = "map"
+  default = {
+  "ami" = "ami-01623d7b"
+  "inst_type" = "t2.micro"
+  "key_name" = "nat1"
+  }
+}
+variable "vpc" {
+   type    = "map"
+   default = {
+       "tag"         = "drupal-vpc"
+       "cidr_block"  = "10.0.0.0/16"
+       "subnet_bits" = "4"
+       "owner_id"    = "tothenew"
+       
+   }
 }
 
-variable "public_subnet_cidr" {
-    description = "CIDR for the Public Subnet"
-    default = "10.0.0.0/24"
+variable "destinationCIDRblock" {
+       default = "0.0.0.0/0"
 }
 
-variable "private_subnet_cidr" {
-    description = "CIDR for the Private Subnet"
-    default = "10.0.1.0/24"
+variable "azs" {
+   type = "map"
+   default = {
+       "us-east-1"      = "us-east-1a,us-east-1b,us-east-1c"
+   }
 }
 
 variable "aws_key_name" {
     description = "Key name"
     default = "tf1"
-}
-
-variable "aws_az" {
-    description = "Availability Zone"
-    default = "us-east-1a"
 }
 
 variable "aws_vpn_instance" {
@@ -50,7 +60,7 @@ variable "drupal_user" {
 
 variable "drupal_pass" {
     description = "Drupal Password"
-    default = "drupal@123"
+    default = "drupal123"
 }
 
 variable "rds_disk_size" {
