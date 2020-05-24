@@ -22,7 +22,7 @@ variable "vpc" {
        "tag"         = "drupal-vpc"
        "cidr_block"  = "10.0.0.0/16"
        "subnet_bits" = "4"
-       "owner_id"    = "tothenew"
+       "owner_id"    = "mukul-poc"
        
    }
 }
@@ -60,7 +60,7 @@ variable "drupal_user" {
 
 variable "drupal_pass" {
     description = "Drupal Password"
-    default = "drupal123"
+    default = "xxxxxxxxx"
 }
 
 variable "rds_disk_size" {
@@ -80,7 +80,7 @@ variable "poc_hosted_zone" {
 
 variable "self_signed_arn" {
     description = "Certificate ARN to be used with Load Balancer"
-    default = "arn:aws:iam::238544149387:server-certificate/pci-dss-x509"
+    default = "arn:aws:iam::XXXXXXXXXXXXXXXXX:server-certificate/pci-dss-x509"
 }
 
 variable "redis_node_type" {
